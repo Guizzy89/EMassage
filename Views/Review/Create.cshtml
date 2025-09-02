@@ -1,0 +1,19 @@
+﻿@model EMassage.Models.Review
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Добавление отзыва";
+}
+
+<h2>Добавление отзыва</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label for="Content" class="form-label">Ваш отзыв:</label>
+        <textarea rows="4" cols="50" class="form-control" id="Content" name="content"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="AuthorId" class="form-label">ID автора:</label>
+        <input type="number" class="form-control" id="AuthorId" name="authorId" required />
+    </div>
+    <button type="submit" class="btn btn-success">Отправить отзыв</button>
+</form>

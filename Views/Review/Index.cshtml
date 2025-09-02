@@ -1,0 +1,33 @@
+﻿@model IEnumerable<EMassage.Models.Review>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Отзывы";
+}
+
+<h2>Отзывы</h2>
+<a href="@Url.Action("Create", "Review")" class="btn btn-primary">Добавить отзыв</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Автор</th>
+            <th>Содержание</th>
+            <th>Дата публикации</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Author.Login</td>
+                <td>@item.Content</td>
+                <td>@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Review", new { id = item.Id })" class="btn btn-warning">Редактировать</a>
+                    <a href="@Url.Action("Delete", "Review", new { id = item.Id })" onclick="return confirm('Вы точно хотите удалить этот отзыв?')" class="btn btn-danger">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

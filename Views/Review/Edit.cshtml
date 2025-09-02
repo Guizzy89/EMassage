@@ -1,0 +1,20 @@
+﻿@model EMassage.Models.Review
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Редактирование отзыва";
+}
+
+<h2>Редактирование отзыва</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label for="Content" class="form-label">Ваш отзыв:</label>
+        <textarea rows="4" cols="50" class="form-control" id="Content" name="content">@Model.Content</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="AuthorId" class="form-label">ID автора:</label>
+        <input type="number" class="form-control" id="AuthorId" name="authorId" value="@Model.AuthorId" required />
+    </div>
+    <button type="submit" class="btn btn-success">Обновить отзыв</button>
+</form>
