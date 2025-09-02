@@ -24,6 +24,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite("Data Source=EMassage.db"));
 
+// Регистрация Identity
+builder.Services.AddIdentity<User, IdentityRole<int>>()
+              .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

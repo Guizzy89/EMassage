@@ -25,7 +25,8 @@
             © @DateTime.Now.Year - EMassage
         </div>
     </footer>
-
+    <!-- Генерируем hidden field с антифоргери токеном -->
+    @Html.AntiForgeryToken()
     <!-- Скрипты -->
     <script src="~/js/site.js" asp-append-version="true"></script>
 </body>

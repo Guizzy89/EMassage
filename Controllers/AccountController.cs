@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace EMassage.Controllers
 {
+    [IgnoreAntiforgeryToken]
     public class AccountController : Controller
     {
         private readonly SignInManager<User> _signInManager;
@@ -28,7 +29,6 @@ namespace EMassage.Controllers
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
