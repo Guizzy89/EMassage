@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace EMassage.Models
 {
-    public class User
+    public class User : IdentityUser<int> // Обратите внимание на тип ключа (int)
     {
         // Первичный ключ пользователя
         public int Id { get; set; }

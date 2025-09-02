@@ -1,0 +1,28 @@
+﻿@model EMassage.Models.LoginViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Вход";
+}
+
+<h2>Вход</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Login" method="post">
+    <div class="form-group">
+        <label asp-for="Login">Логин</label>
+        <input asp-for="Login" class="form-control" />
+        <span asp-validation-for="Login" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password">Пароль</label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input asp-for="RememberMe" /> Запомнить меня?
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Войти</button>
+</form>

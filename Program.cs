@@ -1,5 +1,7 @@
 using EMassage.Data;
+using EMassage.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,11 +15,16 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         opt.AccessDeniedPath = "/Account/AccessDenied"; // Страничка отказа в доступе
     });
 
-builder.Services.AddControllersWithViews();
+
+// Регистрируем контекст базы данных
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Подключение к локальной базе данных SQLite
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite("Data Source=DMassage.db"));
+    options.UseSqlite("Data Source=EMassage.db"));
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
