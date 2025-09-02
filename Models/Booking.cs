@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DMassage.Models
+namespace EMassage.Models
 {
     public class Booking
     {

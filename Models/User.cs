@@ -15,6 +15,9 @@ namespace EMassage.Models
         [Required(ErrorMessage = "Необходимо ввести пароль.")]
         public string PasswordHash { get; set; }
 
+        // Отзывы, оставленные пользователем
+        public ICollection<Review> Reviews { get; set; }
+
         // Роль администратора (true - администратор, false - обычный пользователь)
         public bool IsAdmin { get; set; } = false;
 
