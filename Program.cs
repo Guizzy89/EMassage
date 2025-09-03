@@ -20,12 +20,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Подключение к локальной базе данных SQLite
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite("Data Source=EMassage.db"));
-
 // Регистрация Identity
-builder.Services.AddIdentity<User, IdentityRole<int>>()
+builder.Services.AddIdentity<User, IdentityRole>()
               .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();

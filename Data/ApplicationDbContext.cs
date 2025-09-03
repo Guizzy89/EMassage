@@ -1,9 +1,10 @@
 ﻿using EMassage.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EMassage.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -12,19 +13,13 @@ namespace EMassage.Data
 
         public DbSet<Massage> Massages { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Review> Reviews { get; set; }
-    
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            // Настройка отношений между User и Review
-            modelBuilder.Entity<Review>()
-                .HasOne(r => r.Author)
-                .WithMany(u => u.Reviews)
-                .HasForeignKey(r => r.AuthorId);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite("Data Source=EMassage.db");
+            }
         }
     }
 }
